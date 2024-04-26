@@ -53,9 +53,15 @@ We welcome contributions from the community! If you'd like to contribute to Flex
 3. Make your changes and ensure they are well-tested.
 4. Submit a pull request with a clear description of your changes.
 
-## License
+## Image
+![image](https://github.com/prakharagrawal10/FLEX-FUSION/assets/90237784/cbefc95e-4bdc-4a53-b045-aa75372cb619)
+![image](https://github.com/prakharagrawal10/FLEX-FUSION/assets/90237784/d23d3674-a27f-47b1-a75e-14740654bd8a)
 
-This project is licensed under the MIT License.
+![image](https://github.com/prakharagrawal10/FLEX-FUSION/assets/90237784/d6c001f9-3fb2-4d15-b5b4-f162977a369f)
+![image](https://github.com/prakharagrawal10/FLEX-FUSION/assets/90237784/7e64511c-cdac-4119-8def-43504954aeb0)
+
+
+
 
 ## Contact
 
