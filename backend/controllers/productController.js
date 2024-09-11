@@ -66,16 +66,27 @@ const getProduct = async (req, res) => {
 const searchProduct = async (req, res) => {
     try {
         const { name } = req.query;
+
+        // Validate the query parameter
         if (!name) {
             return res.status(400).json({ error: 'Name is required.' });
         }
 
+        // Find products matching the search term
         const products = await Product.find({ name: { $regex: name, $options: 'i' } });
+
+        // Check if products were found
+        if (products.length === 0) {
+            return res.status(404).json({ message: 'No products found matching the given name.' });
+        }
+
+        // Send the found products
         res.status(200).json(products);
-    }
-    catch (err) {
+    } catch (err) {
+        console.error(err);  // Log the error for debugging
         res.status(500).json({ error: 'Internal Server Error' });
     }
-}
+};
+
 
 module.exports = { addProduct, getAllProducts, getProduct, searchProduct };

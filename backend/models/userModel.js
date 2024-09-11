@@ -14,7 +14,9 @@ const userSchema = new Schema({
     type: String,
     required: true
   }
-})
+}, {
+  timestamps: true // Adds createdAt and updatedAt fields
+});
 
 // static signup method
 userSchema.statics.signup = async function(email, password) {
