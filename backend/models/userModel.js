@@ -26,9 +26,9 @@ userSchema.statics.signup = async function(email, password) {
   if (!validator.isEmail(email)) {
     throw Error('Email not valid')
   }
-  // if (!validator.isStrongPassword(password)) {
-  //   throw Error('Password not strong enough')
-  // }
+  if (!validator.isStrongPassword(password)) {
+    throw Error('Password not strong enough')
+  }
 
   const exists = await this.findOne({ email })
 
@@ -64,29 +64,4 @@ userSchema.statics.login = async function(email, password) {
   return user
 }
 
-
-// static updatePassword method
-userSchema.statics.updatePassword = async function(email, newPassword) {
-  // validation
-  if (!email || !newPassword) {
-    throw Error('All fields must be filled')
-  }
-
-  const user = await this.findOne({ email })
-  if (!user) {
-    throw Error('User not found')
-  }
-
-  // Hash new password
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(newPassword, salt)
-
-  // Update password and save
-  user.password = hashedPassword
-  await user.save()
-
-  return user
-}
-
-
-module.exports = mongoose.model('Usertest', userSchema)
+module.exports = mongoose.model('User', userSchema)
