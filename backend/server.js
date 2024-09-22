@@ -1,43 +1,31 @@
-require('dotenv').config();
+require('dotenv').config()
 
-const express = require('express');
-const mongoose = require('mongoose');
-const userRoutes = require('./routes/user');
-const productRoutes = require('./routes/productRoute');
-const cartRoutes = require('./routes/cartRoute');  // Import the cart routes
+const express = require('express')
+const mongoose = require('mongoose')
+const userRoutes = require('./routes/user')
 
-// Create an Express app
-const app = express();
+// express app
+const app = express()
 
-// Middleware
-app.use(express.json());
+// middleware
+app.use(express.json())
 
 app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
-
-// Routes
-app.use('/api/user', userRoutes);
-app.use('/api/product', productRoutes);
-app.use('/api/cart', cartRoutes);  // Add the cart routes
-
-// Connect to the database
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  console.log(req.path, req.method)
+  next()
 })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Failed to connect to MongoDB:', err));
 
-// Global error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Internal Server Error' });
-});
+// routes
+app.use('/api/user', userRoutes)
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+//product routes
+const prod_route = require('./routes/productRoute');
+app.use('/api/product', prod_route);
+
+
+// connect to db
+mongoose.connect("mongodb://localhost:27017/ECOM");
+ 
+app.listen(3000, function(){
+    console.log("Server is ready");
 });
